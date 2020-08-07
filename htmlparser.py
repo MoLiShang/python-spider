@@ -13,9 +13,12 @@ class parser(object):
         print(links)
         for link in links:
             new_url = link['href']
+            # print(new_url)
             # print(link)
             new_full_url = urljoin(page_url,new_url)
+            print(new_full_url)
             newurls.add(new_full_url)
+            # print(newurls)
             return newurls
 
     # < dd class ="lemmaWgt-lemmaTitle-title" >
@@ -32,6 +35,6 @@ class parser(object):
         soup = BeautifulSoup(htmlcont, 'html.parser', from_encoding='utf-8')
         # print(soup)
         new_urls = self.get_new_urls(page_url, soup)
-        print(new_urls)
+        # print(new_urls)
         new_datas = self.get_new_data(page_url, soup)
         return new_urls, new_datas
