@@ -16,4 +16,4 @@ class download():
         # print(response.read().decode('utf-8'))
         if response.getcode() != 200:
             return None
-        return response.read().decode('utf-8')
+        return response.read()

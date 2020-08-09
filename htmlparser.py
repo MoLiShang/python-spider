@@ -9,23 +9,24 @@ class parser(object):
     def get_new_urls(self, page_url, soup):
         newurls = set()
         links = soup.div.find_all('a',href=re.compile(r'/*news*/'))
-        # links = soup.div.find_all('a')
-        print(links)
+        #links = soup.div.find_all('a')
+        #print(links)
         for link in links:
             new_url = link['href']
-            # print(new_url)
-            # print(link)
-            new_full_url = urljoin(page_url,new_url)
-            print(new_full_url)
+            if re.search('http',new_url)==None:
+                new_full_url = urljoin(page_url,new_url)
+            else:
+                new_full_url=new_url
             newurls.add(new_full_url)
-            # print(newurls)
-            return newurls
+        return newurls
 
     # < dd class ="lemmaWgt-lemmaTitle-title" >
     def get_new_data(self, page_url, soup):
         res_data = {}
         res_data['urls'] = page_url
-        title_node = soup.find('a',class_='kt_imgrc bbb')
+        print(self)
+        title_node = soup.find('div',id='newscontent')
+        print(title_node)
         res_data['title'] = title_node['title']
         return res_data
 
