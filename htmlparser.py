@@ -9,8 +9,8 @@ class parser(object):
     def get_new_urls(self, page_url, soup):
         newurls = set()
         links = soup.div.find_all('a',href=re.compile(r'/*news*/'))
-        #links = soup.div.find_all('a')
-        #print(links)
+        # links = soup.div.find_all('a')
+        print(links)
         for link in links:
             new_url = link['href']
             if re.search('http',new_url)==None:
@@ -24,9 +24,7 @@ class parser(object):
     def get_new_data(self, page_url, soup):
         res_data = {}
         res_data['urls'] = page_url
-        print(self)
         title_node = soup.find('div',id='newscontent')
-        print(title_node)
         res_data['title'] = title_node['title']
         return res_data
 
@@ -36,6 +34,7 @@ class parser(object):
         soup = BeautifulSoup(htmlcont, 'html.parser', from_encoding='utf-8')
         # print(soup)
         new_urls = self.get_new_urls(page_url, soup)
+        # print(new_urls)
         # print(new_urls)
         new_datas = self.get_new_data(page_url, soup)
         return new_urls, new_datas

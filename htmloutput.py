@@ -1,5 +1,6 @@
 class output(object):
     def __init__(self):
+        print('output-----------------------------------------to html')
         self.datas = []
     def collectdata(self,data):
         if data is None:
